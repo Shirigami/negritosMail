@@ -24,6 +24,12 @@
   
 </head>
 <body>
+  <script type="text/javascript">
+  var epsy = <%-JSON.stringify(correos)%>;
+    if(epsy != ""){
+      alert(epsy)
+    }
+  </script>
 
 
 <section id="ext_menu-d">
@@ -73,7 +79,7 @@
             <div class="row" >
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1">
                     <div>
-                    <form  action="/addUser" method="POST" data-form-title="Crear Usuario">
+                    <form  action="/sendMail" method="POST" data-form-title="Crear Usuario">
                         <div>
                             <input type="text" class="form-control" name="nombre" required="" data-form-field="Nombre de Usuario" placeholder="Nombre de usuario" id="nombreUser">
                         </div>

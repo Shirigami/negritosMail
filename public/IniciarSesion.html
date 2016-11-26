@@ -24,6 +24,12 @@
   
 </head>
 <body>
+<script type="text/javascript">
+  var epsy = <%-JSON.stringify(correos)%>;
+    if(epsy != ""){
+      alert(epsy)
+    }
+  </script>
 <section id="ext_menu-d">
 
     <nav class="navbar navbar-dropdown navbar-fixed-top">
@@ -71,9 +77,9 @@
             <div class="row" >
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1">
                     <div>
-                    <form  action="#" method="" data-form-title="Iniciar Sesión">
+                    <form  action="/userSend" method="POST" data-form-title="Iniciar Sesión">
                         <div>
-                            <input type="text" class="form-control" name="nombreUsuario" required="" data-form-field="Nombre de Usuario" placeholder="Nombre de usuario" id="nombreUser">
+                            <input type="text" class="form-control" name="email" required="" data-form-field="Nombre de Usuario" placeholder="Nombre de usuario" id="nombreUser">
                         </div>
                         <br>
                         <div >
@@ -81,7 +87,7 @@
                         </div>
                         <br>
                         <div>
-                            <div><button  type="button" onclick="window.location.href='EnviarCorreo.html'" class="btn">ACEPTAR</button></div>
+                            <div><input type="submit" name="Iniciar" value="Iniciar"  class="btn"></div>
                         </div>
                     </form>
                 </div>

@@ -14,6 +14,8 @@ shell.exec('java -classpath AuxHelper/EmailHelper/ Mail mell@negritosmail.com sy
 })
 */
 app.get("/", function(solicitud, respuesta) {
+
+
    respuesta.render("./index");
 });
 
@@ -25,11 +27,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //BASE DE DATOS
-mongoose.connect("mongodb://localhost/test");
+mongoose.connect("mongodb://localhost/emailsManagement");
 
 var userSchema = {
 	name: String,
-	mail: String,
+	email: String,
 	password:String
 };
 
@@ -38,44 +40,49 @@ var User = mongoose.model("User", userSchema);
 
 
 
-// Inicio página
-app.get('/',function(req,res){
-
-	res.render("addUser");
-
-});
-
-
 
 //---Agregar usuario-----------------------------------------
-app.post('/addUser',function(req,res){
+app.post('/sendMail',function(req,res){
 	//verificación de correo existente
-	//User.find(function(error,documento){
-	//var mails = [];
-	//for (var i = 0; i < documento.length; i++){
-	//	mails.push(documento[i].mail);
-	//}
-
-	//console.log(mails);
-	//var user=new User(data);
-
-	//if (emails.indexOf(req.body.mail) != -1){
-	//	res.render("addUser",{correos:"El correo ya existe"});
-
-	//}
-	//});
-
-	var data={
-		name:req.body.nombre,
-		mail:req.body.nombre+"@negritosmail.com",
-		password:req.body.password
+	User.find(function(error,documento){
+	var emails = [];
+	for (var i = 0; i < documento.length; i++){
+		emails.push(documento[i].email);
 	}
-	var user=new User(data);
-	user.save(function(err){
-		res.render("../public/EnviarCorreo.html",{correos: "Cliente registrado correctamente"});
+
+	if (emails.indexOf(req.body.nombre+"@negritosmail.com") != -1){
+		
+		res.render("../public/addUser.html",{correos:"Ya existe el correo"});
+
+	}
+	else{
+		
+		var data={
+		name:req.body.nombre,
+		email:req.body.nombre+"@negritosmail.com",
+		password:req.body.password
+		}
+		var user=new User(data);
+		user.save(function(err){
+		res.render("../public/EnviarCorreo.html");
+		});
+	}
 	});
-
-
 });
+
+
+app.post('/userSend',function(req,res){
+
+	User.find({"email":"epsy@negritosmail.com"}, function(error,documento){
+		console.log(documento[0].password);
+		if (documento[0].password==req.body.password){
+			res.render("../public/EnviarCorreo.html");
+			console.log("ddddddd");
+		}
+		res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"})
+	});
+});
+
+
 
 app.listen(5000)
