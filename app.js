@@ -77,7 +77,7 @@ app.post('/userSend',function(req,res){
 		if(!documento.length==0){
 			if (documento[0].password==req.body.password){
 			console.log(documento[0].email)
-			res.render("../public/EnviarCorreo.html",{email:documento[0].email});	
+			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});	
 			}
 			else{res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
 			}
@@ -87,9 +87,10 @@ app.post('/userSend',function(req,res){
 
 app.post('/sent',function(req,res){
 	console.log(req.body);
-	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail ' +req.body.emailuser+' '+ req.body.email+' '+req.body.subject+' '+req.body.message.replace(new RegExp(" ",'g'),'_'),function(){
+	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail ' +req.body.emailuser+' '+ req.body.email+' '+req.body.subject.replace(new RegExp(" ",'g'),'_')+' '+req.body.message.replace(new RegExp(" ",'g'),'_'),function(){
   	console.log("executed");
-	})
+	});
+	res.render("../public/EnviarCorreo.html",{correos:"El correo se envió correctamente",email:req.body.emailuser});
 
 
 });

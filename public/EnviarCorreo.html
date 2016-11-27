@@ -25,10 +25,18 @@
 </head>
 <body onload="myFunction()">
 <script type="text/javascript">
-
-  function myFunction(){
-  document.getElementById('id1').value=<%-JSON.stringify(email)%> ; 
+  var epsy = <%-JSON.stringify(correos)%>;
+  if(epsy != ""){
+    alert(epsy);
   }
+  function myFunction(){
+    document.getElementById('id1').value=<%-JSON.stringify(email)%> ;
+    document.getElementById('id2').value=<%-JSON.stringify(email)%> ; 
+  }
+  function whoIM(){
+    alert("Iniciaste sesión como: "+<%-JSON.stringify(email)%>);
+  }
+
 </script>
 <section id="ext_menu-2">
 
@@ -78,6 +86,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1" >
+                 <input type="submit" onclick="whoIM()" id="id2" value="" size="14" class="nav-link btn btn-primary">
                     <form  action="/sent" method="POST" data-form-title="Iniciar Sesión">
                        <input  type='hidden' id='id1' name="emailuser" />
                         <input type="hidden" value="G/zqr6zqJOSn/AFR5rsnZunP+KVpQLh+eITYrfOTArBCGF0Vblfd6H1/PRnF2n4JFvTS4ATOtg7pPRjK2HkN6VdpQT4fOWiYnEqrVjtx5c7wYXib8nbJgh/IcCQbn58K">
