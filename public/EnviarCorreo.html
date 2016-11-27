@@ -23,7 +23,13 @@
   
   
 </head>
-<body>
+<body onload="myFunction()">
+<script type="text/javascript">
+
+  function myFunction(){
+  document.getElementById('id1').value=<%-JSON.stringify(email)%> ; 
+  }
+</script>
 <section id="ext_menu-2">
 
     <nav class="navbar navbar-dropdown navbar-fixed-top">
@@ -64,7 +70,6 @@
             <div class="row">
                 <div class="col-xs-12 text-xs-center">
                     <h3 class="mbr-section-title display-2">Envío de Mensaje</h3>
-                    
                 </div>
             </div>
         </div>
@@ -74,6 +79,7 @@
             <div class="row">
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1" >
                     <form  action="/sent" method="POST" data-form-title="Iniciar Sesión">
+                       <input  type='hidden' id='id1' name="emailuser" />
                         <input type="hidden" value="G/zqr6zqJOSn/AFR5rsnZunP+KVpQLh+eITYrfOTArBCGF0Vblfd6H1/PRnF2n4JFvTS4ATOtg7pPRjK2HkN6VdpQT4fOWiYnEqrVjtx5c7wYXib8nbJgh/IcCQbn58K">
                         <div class="row row-sm-offset">
                             <div class="col-xs-12 col-md-6">

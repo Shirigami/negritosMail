@@ -74,21 +74,22 @@ app.post('/sendMail',function(req,res){
 app.post('/userSend',function(req,res){
 
 	User.find({"email":req.body.email}, function(error,documento){
-		console.log(documento[0].password);
-		console.log("why here again?");
-		if (documento[0].password==req.body.password){
-			res.render("../public/EnviarCorreo.html");
-			
-		}
-		else{res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
-	});
+		if(!documento.length==0){
+			if (documento[0].password==req.body.password){
+			console.log(documento[0].email)
+			res.render("../public/EnviarCorreo.html",{email:documento[0].email});	
+			}
+			else{res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
+			}
+		else{res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});}
+		});
 });
 
 app.post('/sent',function(req,res){
 	console.log(req.body);
-//	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail req.body. sylalp7@gmail.com Hola comoestas?',function(){
-//  	console.log("executed");
-//})
+	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail ' +req.body.emailuser+' '+ req.body.email+' '+"ghaoas djddjndd djhdsdjkd djkshdjsd dkdsdj",function(){
+  	console.log("executed");
+	})
 });
 
-app.listen(5000)
+app.listen(5000);
