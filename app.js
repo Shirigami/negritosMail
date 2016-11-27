@@ -73,16 +73,19 @@ app.post('/sendMail',function(req,res){
 
 app.post('/userSend',function(req,res){
 
-	User.find({"email":"epsy@negritosmail.com"}, function(error,documento){
+	User.find({"email":req.body.email}, function(error,documento){
 		console.log(documento[0].password);
+		console.log("why here again?");
 		if (documento[0].password==req.body.password){
 			res.render("../public/EnviarCorreo.html");
-			console.log("ddddddd");
+			
 		}
-		res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"})
+		else{res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
 	});
 });
 
-
+app.post('/sent',function(req,res){
+	console.log(req.body);
+});
 
 app.listen(5000)
