@@ -64,7 +64,7 @@ app.post('/sendMail',function(req,res){
 		}
 		var user=new User(data);
 		user.save(function(err){
-		res.render("../public/EnviarCorreo.html");
+		res.render("../public/EnviarCorreo.html",{correos:"",email:user.email});
 		});
 	}
 	});
