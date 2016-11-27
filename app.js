@@ -87,9 +87,11 @@ app.post('/userSend',function(req,res){
 
 app.post('/sent',function(req,res){
 	console.log(req.body);
-	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail ' +req.body.emailuser+' '+ req.body.email+' '+"ghaoas djddjndd djhdsdjkd djkshdjsd dkdsdj",function(){
+	shell.exec('java -classpath AuxHelper/EmailHelper/ Mail ' +req.body.emailuser+' '+ req.body.email+' '+req.body.subject+' '+req.body.message.replace(new RegExp(" ",'g'),'_'),function(){
   	console.log("executed");
 	})
+
+
 });
 
 app.listen(5000);
