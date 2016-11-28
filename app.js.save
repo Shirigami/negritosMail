@@ -15,10 +15,8 @@ app.use(express.static("public"));
 
 // This line is from the Node.js HTTPS documentation.
 var options = {
- // key: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.key'),
-  //cert: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.crt')
-  key: fs.readFileSync('./keySsl/apache.key'),
-  cert: fs.readFileSync('./keySsl/apache.crt')
+  key: fs.readFileSync(/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.key'/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.key'),
+  cert: fs.readFileSync('/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.crt')
 };
 
 
@@ -109,20 +107,15 @@ app.post('/userSend',function(req,res){
 });
 
 app.get('/GuserSend',function(req,res){
-	var lista= req.url.split('&');
-	console.log(lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@'));
-	console.log(lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),''));
-
-	if(lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')=="admin" && lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')=="admin")
+	console.log(req.url.split('&'));
+	if(req.body.email=="admin" && req.body.password=="admin")
 	{
 		res.render("../public/EliminarUsuario.html");
 	}
-	else{User.find({"email":lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')}, function(error,documento){
+	else{User.find({"email":req.body.email}, function(error,documento){
 
 		if(!documento.length==0){
 
-			if (documento[0].password==lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')){
-			
 			if (documento[0].password==req.body.password){
 
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
@@ -133,9 +126,9 @@ app.get('/GuserSend',function(req,res){
 			}
 		else{
 			res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});
-			}
 		}
-	})};
+		});
+	}
 });
 
 app.post('/sent',function(req,res){
