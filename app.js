@@ -120,22 +120,23 @@ app.get('/GuserSend',function(req,res){
 	else{User.find({"email":lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')}, function(error,documento){
 
 		if(!documento.length==0){
+			console.log(documento[0].password+"=="+lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),''));
 
 			if (documento[0].password==lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')){
 			
-			if (documento[0].password==req.body.password){
-
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
 
+			}else{
+				res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});
 			}
-			else{
-				res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
-			}
+
+		}
 		else{
+			console.log("else");
 			res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});
 			}
-		}
-	})};
+		});
+	};
 });
 
 app.post('/sent',function(req,res){
