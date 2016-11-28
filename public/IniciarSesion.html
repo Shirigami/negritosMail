@@ -77,15 +77,16 @@
                         <br>
                         <div>
                           <select onchange="myfunction()" id="id0" class="form-control">
-                            <option>GET</option>
-                            <option>POST</option>
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
                           </select>
                         </div>
                         <br>
                         <div>
-                          <select   class="form-control">
-                            <option>HTTP</option>
-                            <option href="https//:localhost:5001">HTTPS</option>
+                          <select onchange="toHttps()"  id="100" class="form-control">
+                          <option >ProtocoloHTTP</option>
+                            <option value="HTTP">HTTP</option>
+                            <option value="HTTPS">HTTPS</option>
                           </select>
                         </div>
                         <br>
@@ -93,7 +94,7 @@
                             <div><input type="submit" name="Iniciar" value="INICIAR" class="btn"></div>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -119,15 +120,20 @@
   <script type="text/javascript">
   
   function myfunction(){
-    if(document.getElementById('id0').value="POST"){
+    if(document.getElementById('id0').value=="POST"){
         document.getElementById('id3').action="/userSend"; 
         document.getElementById('id3').method="POST";
     }
     else{document.getElementById('id3').action="/GuserSend"; 
           document.getElementById('id3').method="GET"
-    }
-     
+    }    
   }
+  function toHttps(){
+    if(document.getElementById('100').value=="HTTPS"){
+      location.href="https://localhost:5001/IniciarSesion.html";}
+    else{location.href="http://localhost:5000/IniciarSesion.html";}
+  }
+ 
   </script>
   </body>
 </html>
