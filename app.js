@@ -15,8 +15,10 @@ app.use(express.static("public"));
 
 // This line is from the Node.js HTTPS documentation.
 var options = {
-  key: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.key'),
-  cert: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.crt')
+ // key: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.key'),
+  //cert: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.crt')
+  key: fs.readFileSync('./keySsl/apache.key'),
+  cert: fs.readFileSync('./keySsl/apache.crt')
 };
 
 
@@ -131,8 +133,9 @@ app.get('/GuserSend',function(req,res){
 			}
 		else{
 			res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});
+			}
 		}
-	}
+	})};
 });
 
 app.post('/sent',function(req,res){
