@@ -20,7 +20,12 @@
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 </head>
 <body>
-
+ <script type="text/javascript">
+  var epsy = <%-JSON.stringify(correos)%>;
+    if(epsy != ""){
+      alert(epsy)
+    }
+  </script>
 <section id="ext_menu-d">
     <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container">
@@ -88,6 +93,7 @@
                             <div><input type="submit" name="Iniciar" value="INICIAR" class="btn"></div>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
