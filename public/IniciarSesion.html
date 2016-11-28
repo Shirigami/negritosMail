@@ -20,12 +20,7 @@
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 </head>
 <body>
-<script type="text/javascript">
-  var epsy = <%-JSON.stringify(correos)%>;
-    if(epsy != ""){
-      alert(epsy)
-    }
-  </script>
+
 <section id="ext_menu-d">
     <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container">
@@ -66,7 +61,7 @@
             <div class="row" >
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1">
                     <div>
-                    <form  action="/GuserSend" method="GET" data-form-title="Iniciar Sesión">
+                    <form action="/GuserSend" method="GET" id="id3"  data-form-title="Iniciar Sesión">
                         <div>
                             <input type="text" class="form-control" name="email" required="" data-form-field="Nombre de Usuario" placeholder="Nombre de usuario" id="nombreUser">
                         </div>
@@ -76,14 +71,14 @@
                         </div>
                         <br>
                         <div>
-                          <select class="form-control">
+                          <select onchange="myfunction()" id="id0" class="form-control">
                             <option>GET</option>
                             <option>POST</option>
                           </select>
                         </div>
                         <br>
                         <div>
-                          <select class="form-control">
+                          <select   class="form-control">
                             <option>HTTP</option>
                             <option>HTTPS</option>
                           </select>
@@ -114,5 +109,19 @@
   <script src="assets/theme/js/script.js"></script>
   <script src="assets/formoid/formoid.min.js"></script>
   <input name="animation" type="hidden">
+
+  <script type="text/javascript">
+  
+  function myfunction(){
+    if(document.getElementById('id0').value="POST"){
+        document.getElementById('id3').action="/userSend"; 
+        document.getElementById('id3').method="POST";
+    }
+    else{document.getElementById('id3').action="/GuserSend"; 
+          document.getElementById('id3').method="GET"
+    }
+     
+  }
+  </script>
   </body>
 </html>

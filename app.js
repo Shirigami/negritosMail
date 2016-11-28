@@ -97,16 +97,19 @@ app.post('/userSend',function(req,res){
 });
 
 app.get('/GuserSend',function(req,res){
-	console.log(req.url.split('&'));
-	if(req.body.email=="admin" && req.body.password=="admin")
+	var lista= req.url.split('&');
+	console.log(lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@'));
+	console.log(lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),''));
+
+	if(lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')=="admin" && lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')=="admin")
 	{
 		res.render("../public/EliminarUsuario.html");
 	}
-	else{User.find({"email":req.body.email}, function(error,documento){
+	else{User.find({"email":lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')}, function(error,documento){
 
 		if(!documento.length==0){
 
-			if (documento[0].password==req.body.password){
+			if (documento[0].password==lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')){
 			
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
 
