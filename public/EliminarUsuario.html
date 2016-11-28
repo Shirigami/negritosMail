@@ -7,8 +7,8 @@
   <meta name="generator" content="Mobirise v3.9.2, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="assets/images/mensaje-128x128-45.png" type="image/x-icon">
-  <meta name="description" content="AgregarUsuario  Negritos Mail">
-  <title>Inicio | Negritos Mail</title>
+  <meta name="description" content="Eliminar Usuario  Negritos Mail">
+  <title>Eliminar  | Negritos Mail</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
@@ -23,15 +23,8 @@
   
   
 </head>
-<body>
-  <script type="text/javascript">
-  var epsy = <%-JSON.stringify(correos)%>;
-    if(epsy != ""){
-      alert(epsy)
-    }
-  </script>
-
-<section id="ext_menu-d">
+<body style="background-color: rgb(50, 50, 50)">
+<section id="ext_menu-h">
 
     <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container">
@@ -41,7 +34,7 @@
 
                     <div class="navbar-brand">
                         <a href="https://mobirise.com" class="navbar-logo"><img src="assets/images/mensaje-128x128-45.png" alt="Mobirise"></a>
-                        <a class="navbar-caption text-white" href="">Negritos Mail</a>
+                        <a class="navbar-caption text-white" href="https://mobirise.com">Negritos Mail</a>
                     </div>
 
                 </div>
@@ -50,7 +43,8 @@
                     <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="hamburger-icon"></div>
                     </button>
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item nav-btn"><a class="nav-link btn btn-primary" href="index.html">INICIO</a></li></ul>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="IniciarSesion.html"> INIICIAR SESION</a></li><li class="nav-item"><a class="nav-link link" href="addUser.html">CREAR USUARIO</a></li></ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
@@ -62,33 +56,26 @@
     </nav>
 
 </section>
-</section><section class="mbr-section mbr-parallax-background mbr-after-navbar" id="form2-e" style="background-image: url(assets/images/jumbotron.jpg); padding-top: 160px; padding-bottom: 160px;">
+
+<section class="mbr-section mbr-parallax-background mbr-after-navbar" id="form2-i" style="background-image: url(assets/images/jumbotron.jpg); padding-top: 160px; padding-bottom: 160px;">
         <div class="mbr-section mbr-section__container mbr-section__container--middle">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-xs-center">
-                    <h3 class="mbr-section-title display-2">Crear Usuario</h3>
-                    <small class="mbr-section-subtitle"></small>
+                    <h3 class="mbr-section-title display-2">Eliminar Usuario</h3>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <div class="mbr-section mbr-section-nopadding" style="align-content: center">
-        <div class="container" >
-            <div class="row" >
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <div>
-                    <form  action="/sendMail" method="POST" data-form-title="Crear Usuario">
-                        <div>
-                            <input type="text" class="form-control" name="nombre" required="" data-form-field="Nombre de Usuario" placeholder="Nombre de usuario" id="nombreUser">
-                        </div>
-                        <br>
-                        <div >
-                            <input type="password" class="form-control" name="password" required="" data-form-field="Password" placeholder="Contraseña" id="password">
-                        </div>
-                        <br>
-                        <div>
-                            <div><input type="submit" name="Crear" value="Crear"  class="btn"></div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1"> 
+                    <form class="mbr-form" action="" method="post">
+                        <div class="mbr-subscribe mbr-subscribe-dark input-group">
+                            <input type="text" class="form-control" name="nombre" required="" data-form-field="NOMNRE" placeholder="Ingrese el nombre del Usuario" id="form2-i-nombre">
+                            <span class="input-group-btn"><button type="submit" class="btn btn-primary">ELIMINAR</button></span>
                         </div>
                     </form>
                 </div>
@@ -97,7 +84,7 @@
     </div>
 </section>
 
-<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-f" style="background-color: rgb(50, 50, 50); padding-top: 2.625rem; padding-bottom: 3.5rem;">
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-j" style="background-color: rgb(50, 50, 50); padding-top: 2.625rem; padding-bottom: 3.5rem;">
     
     <div class="container">
         <p class="text-xs-center">Copyright (c) 2016 | Infraestructura Tecnológica | Negritos Mail</p>

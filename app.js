@@ -3,6 +3,7 @@ var app = express()
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var shell = require('./AuxHelper/ShellHelper/shellWriter');
+const url = require('url');
 app.set("view engine", "jade");
 app.use(express.static("public"));
 
@@ -72,17 +73,52 @@ app.post('/sendMail',function(req,res){
 
 
 app.post('/userSend',function(req,res){
+	if(req.body.email=="admin" && req.body.password=="admin")
+	{
+		res.render("../public/EliminarUsuario.html");
+	}
+	else{User.find({"email":req.body.email}, function(error,documento){
 
-	User.find({"email":req.body.email}, function(error,documento){
 		if(!documento.length==0){
+
 			if (documento[0].password==req.body.password){
-			console.log(documento[0].email)
-			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});	
+			
+			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
+
 			}
-			else{res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
+			else{
+				res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
 			}
-		else{res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});}
+		else{
+			res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});
+		}
 		});
+	}
+});
+
+app.get('/GuserSend',function(req,res){
+	console.log(req.url.split('&'));
+	if(req.body.email=="admin" && req.body.password=="admin")
+	{
+		res.render("../public/EliminarUsuario.html");
+	}
+	else{User.find({"email":req.body.email}, function(error,documento){
+
+		if(!documento.length==0){
+
+			if (documento[0].password==req.body.password){
+			
+			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
+
+			}
+			else{
+				res.render("../public/IniciarSesion.html",{correos:"Contraseña inválida"});}
+			}
+		else{
+			res.render("../public/IniciarSesion.html",{correos:"El usuario no existe"});
+		}
+		});
+	}
 });
 
 app.post('/sent',function(req,res){
