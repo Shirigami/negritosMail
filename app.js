@@ -30,11 +30,7 @@ app.get("/", function(solicitud, respuesta) {
 
    respuesta.render("./index");
 });
-http.createServer(app).listen(5000);
-// Create an HTTPS service identical to the HTTP service.
-https.createServer(options, app).listen(5001);
 
-/*
 
 //app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -144,7 +140,7 @@ app.post('/sent',function(req,res){
 
 
 });
-*/
+
 //app.listen(5000);
 http.createServer(app).listen(5000);
 // Create an HTTPS service identical to the HTTP service.
