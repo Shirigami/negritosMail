@@ -2,14 +2,14 @@
   "name": "SocketEMail",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
-    "mongodb": "*",
-    "express": "*",
-    "mongoose": "*",
     "body-parser": "*",
-    "ejs" : "*",
-    "jade": "*"
+    "ejs": "*",
+    "express": "*",
+    "express-https-redirect": "^1.0.0",
+    "jade": "*",
+    "mongodb": "*",
+    "mongoose": "*"
   }
 }

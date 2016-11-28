@@ -1,5 +1,11 @@
 var express = require('express')
+
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
+
 var app = express()
+
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var shell = require('./AuxHelper/ShellHelper/shellWriter');
@@ -7,6 +13,11 @@ const url = require('url');
 app.set("view engine", "jade");
 app.use(express.static("public"));
 
+// This line is from the Node.js HTTPS documentation.
+var options = {
+  key: fs.readFileSync('/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.key'),
+  cert: fs.readFileSync('/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.crt')
+};
 
 
 /*
@@ -19,8 +30,11 @@ app.get("/", function(solicitud, respuesta) {
 
    respuesta.render("./index");
 });
+http.createServer(app).listen(5000);
+// Create an HTTPS service identical to the HTTP service.
+https.createServer(options, app).listen(5001);
 
-
+/*
 
 //app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -52,12 +66,12 @@ app.post('/sendMail',function(req,res){
 	}
 
 	if (emails.indexOf(req.body.nombre+"@negritosmail.com") != -1){
-		
+
 		res.render("../public/addUser.html",{correos:"Ya existe el correo"});
 
 	}
 	else{
-		
+
 		var data={
 		name:req.body.nombre,
 		email:req.body.nombre+"@negritosmail.com",
@@ -82,7 +96,7 @@ app.post('/userSend',function(req,res){
 		if(!documento.length==0){
 
 			if (documento[0].password==req.body.password){
-			
+
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
 
 			}
@@ -107,7 +121,7 @@ app.get('/GuserSend',function(req,res){
 		if(!documento.length==0){
 
 			if (documento[0].password==req.body.password){
-			
+
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
 
 			}
@@ -130,5 +144,8 @@ app.post('/sent',function(req,res){
 
 
 });
-
-app.listen(5000);
+*/
+//app.listen(5000);
+http.createServer(app).listen(5000);
+// Create an HTTPS service identical to the HTTP service.
+https.createServer(options, app).listen(5001);
