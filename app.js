@@ -15,8 +15,8 @@ app.use(express.static("public"));
 
 // This line is from the Node.js HTTPS documentation.
 var options = {
-  key: fs.readFileSync('/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.key'),
-  cert: fs.readFileSync('/home/kenneth/Documents/emailManagment/negritosMail/negritosMail/keySsl/apache.crt')
+  key: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.key'),
+  cert: fs.readFileSync('/home/mell/webserver/negritosMail/keySsl/apache.crt')
 };
 
 
