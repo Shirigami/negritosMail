@@ -123,7 +123,6 @@ app.get('/GuserSend',function(req,res){
 			console.log(documento[0].password+"=="+lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),''));
 
 			if (documento[0].password==lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')){
-
 			res.render("../public/EnviarCorreo.html",{email:documento[0].email,correos:""});
 
 			}else{
