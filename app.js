@@ -87,7 +87,7 @@ app.post('/sendMail',function(req,res){
 app.post('/userSend',function(req,res){
 	if(req.body.email=="admin" && req.body.password=="admin")
 	{
-		res.render("../public/EliminarUsuario.html");
+		res.render("../public/EliminarUsuario.html",{correos:""});
 	}
 	else{User.find({"email":req.body.email}, function(error,documento){
 
@@ -115,7 +115,7 @@ app.get('/GuserSend',function(req,res){
 
 	if(lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')=="admin" && lista[1].replace(lista[1].substring(0,lista[1].indexOf("=")+1),'')=="admin")
 	{
-		res.render("../public/EliminarUsuario.html");
+		res.render("../public/EliminarUsuario.html",{correos:""});
 	}
 	else{User.find({"email":lista[0].replace(lista[0].substring(0,lista[0].indexOf("=")+1),'').replace("%40",'@')}, function(error,documento){
 
@@ -147,6 +147,19 @@ app.post('/sent',function(req,res){
 	res.render("../public/EnviarCorreo.html",{correos:"El correo se envió correctamente",email:req.body.emailuser});
 
 
+});
+
+app.post('/deleteUser',function(req,res){
+	User.remove({"name":req.body.nombre}, function(error){
+		console.log(error);
+		if(error){
+			res.render("../public/EliminarUsuario.html",{correos:"No existe el usuario"});
+		}
+		else{
+			res.render("../public/EliminarUsuario.html",{correos:"Usuario eliminado"});
+		
+		}
+	});
 });
 
 //app.listen(5000);
